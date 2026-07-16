@@ -56,3 +56,13 @@ typedef void(BOX_FUNC)(T_BOX *pbox);
 #ifdef __cplusplus
 }
 #endif
+
+// -----------------------------------------------------------------------------
+// Portable endian helpers (LBA2_LE16 / LBA2_LE32 + the Wii U swap utilities).
+// Included here — right after the U16/U32 typedefs the macros cast through — so
+// every translation unit that pulls in the ADELINE base types automatically has
+// the endian macros in scope. They are no-ops on little-endian desktop targets
+// (Linux/macOS/Windows CI) and __builtin_bswap on the big-endian Wii U. This is
+// what keeps host code that reads LE data files (e.g. LBA2_LE16(animPtr[1]))
+// compiling on both without a per-file #ifdef LBA2_TARGET_WIIU include guard.
+#include <SYSTEM/wiiu_endian.h>
