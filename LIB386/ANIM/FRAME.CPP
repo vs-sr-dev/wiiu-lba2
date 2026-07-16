@@ -5,8 +5,12 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <SYSTEM/DEBUG_TRACES.H>
-#ifdef LBA2_TARGET_WIIU
+// Portable endian macros: LBA2_LE16/LE32 are __builtin_bswap on Wii U and a
+// no-op (x) elsewhere. The header MUST be included unconditionally because the
+// macro is used in host code below; the SYSTEM/wiiu_endian.h #else branch
+// supplies the no-op definition on little-endian desktop targets (CI).
 #include <SYSTEM/wiiu_endian.h>
+#ifdef LBA2_TARGET_WIIU
 #include <SYSTEM/LOGPRINT.H>
 #endif
 
