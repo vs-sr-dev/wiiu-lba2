@@ -1,0 +1,11 @@
+{
+  "$schema": "https://recomp.fyi/schema/v1.json",
+  "game": "Little Big Adventure 2",
+  "system": "PC",
+  "type": "port",
+  "status": "complete",
+  "targets": [
+    "Wii U"
+  ],
+  "toolchain": "WUT"
+}
